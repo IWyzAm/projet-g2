@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #1f2125, #000000, #000000);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+
+
+.container {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg);
+    transition: all 0.35s ease;
+}
+
+.name-gradient {
+    background: -webkit-linear-gradient(135deg, #fdfdfd, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0041f30c, #5db9280a);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    content: url('/api/template');
+    margin-right: 20px;
+}
+
+.credit-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.credit-button:hover {
+    background-color: #333333;
+}
+
+.header-text h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.header-text p {
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.link-card {
+    background: linear-gradient(145deg, rgba(36, 36, 36, 0.2), rgba(16, 16, 16, 0.2));
+    border-radius: 12px;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    perspective: 1000px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.link-card:hover {
+    transform: scale(1.08) rotateY(6deg);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(145deg, rgba(56, 56, 56, 0.4), rgba(36, 36, 36, 0.4));
+    z-index: 10;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.link-card:hover ~ .rain .drop {
+    animation-play-state: paused;
+}
+
+.link-card:not(:hover) ~ .rain .drop {
+    animation-play-state: running;
+}
+
+.link-card:hover::before {
+    opacity: 1;
+}
+
+.link-card h3 {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.snow {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.snowflake {
+    position: absolute;
+    bottom: 100%;
+    pointer-events: none;
+    font-size: 12px;
+    animation: snowfall 10s linear infinite;
+    user-select: none;
+    filter: brightness(100%) saturate(0); /* This will make the emoji white */
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.glow-dark {
+    text-shadow: 0 0 5px #000000, 0 0 10px #000000, 0 0 15px #000000, 0 0 20px #000000;
+}
+
+.glow-light {
+    text-shadow: 0 0 5px #ffffff6b;
+}
+
+.glow-gradient {
+    text-shadow:
+        0 0 5px rgba(77, 77, 77, 0.42),
+        0 0 10px rgba(48, 75, 226, 0.42);
+}
+
+.pulsating-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(circle at center,
+    rgba(37, 20, 185, 0.082) 0%,
+    transparent 80%);
+    animation: pulse 4s ease-in-out infinite;
+    z-index: -2;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.5;
+    }
+}
+
+.ambient-light {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(40, 56, 125, 0.514) 0%,
+        rgba(8, 25, 35, 0.05) 100%
+    );
+    filter: blur(80px);
+    animation: ambientShift 15s infinite;
+    z-index: -2;
+}
+
+@keyframes ambientShift {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0.3; }
+}
